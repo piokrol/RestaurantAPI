@@ -1,17 +1,19 @@
-var builder = WebApplication.CreateBuilder(args);
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+using RestaurantAPI;
+using System.Diagnostics;
 
-// Add services to the container.
 
-builder.Services.AddControllers();
+public class Program
+{
+    public static void Main(string[] args)
+    {
 
-var app = builder.Build();
+        CreateHostBuilder(args).Build().Run();
 
-// Configure the HTTP request pipeline.
+    }
 
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();
+    public static IWebHostBuilder CreateHostBuilder(string[] args) =>
+    WebHost.CreateDefaultBuilder(args)
+            .UseStartup<Startup>();
+}
